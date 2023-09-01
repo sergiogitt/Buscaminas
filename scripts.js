@@ -36,9 +36,34 @@ function abrirCasilla(fila,columna){
     casilla.classList.remove('activo');
     casilla.classList="inactivo";
     
-    if(array_tablero[fila][columna]!=0){
-        let contenido=document.createTextNode(array_tablero[fila][columna]);
-        casilla.appendChild(contenido)
+    let contenido=document.createTextNode(array_tablero[fila][columna]);
+    casilla.appendChild(contenido)
+    console.log(contenido)
+    if(array_tablero[fila][columna]==0){
+        console.log("recorro vecinas")
+        recorrerVecinos(fila,columna)
+
+    }
+    
+}
+function recorrerVecinos(fila,columna){
+    
+    if(fila>=0&&fila<array_tablero.length&&columna>=0&&columna<array_tablero[0].length){
+        for ( i=fila-1;i<=fila+1;i++){
+            if (i>=0&&i<array_tablero.length){
+                for ( j=columna-1;j<=columna+1;j++){
+                    if ((j>=0&&j<array_tablero[i].length)&&(!(fila==i&&columna==j))){
+                        console.log(array_tablero[i][j])
+                        let casilla=document.getElementById(`boton-${i}-${j}`);
+                        if (array_tablero[i][j]==0&&casilla.classList.contains("activo")){
+                            abrirCasilla(i,j);
+                            console.log("abro mas vecinas")
+                        }
+
+                    }
+                }
+            }
+        }
     }
 }
 function generarMinas(minas){
