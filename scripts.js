@@ -7,29 +7,40 @@ function generarTablero(minas,tamanyo){
     const tablero = document.getElementById('tablero');
     for (let i = 0; i < filas; i++) {
         let fila_nueva=[];
+        const fila = document.createElement('tr');
         for (let j = 0; j < columnas; j++) {
+        const columna = document.createElement('td');
         const boton = document.createElement('button');
         fila_nueva.push("")
-       
+        
         boton.innerText = ``;
         boton.id = `boton-${i}-${j}`;
-        tablero.appendChild(boton);
-
-        boton.addEventListener('click', function() {
-            alert(`Has hecho clic en el botón ${i + 1}-${j + 1}`);
-        });
+        boton.classList="activo";
+        columna.appendChild(boton);
+        fila.appendChild(columna)
+        boton.setAttribute('onclick', `abrirCasilla(${i},${j})`);
         }
         array_tablero.push(fila_nueva)
         // Agrega un salto de línea después de cada fila (opcional)
-        const br = document.createElement('br');
-        tablero.appendChild(br);
-        console.log(array_tablero)
+        tablero.appendChild(fila);
+        
     }
     generarMinas(5);
-   generarNumeros();
+    generarNumeros();
     console.log(array_tablero)
 }
-
+function abrirCasilla(fila,columna){
+    console.log("abirendo "+fila+ columna)
+    let casilla=document.getElementById(`boton-${fila}-${columna}`);
+    casilla.removeAttribute('onclick');
+    casilla.classList.remove('activo');
+    casilla.classList="inactivo";
+    
+    if(array_tablero[fila][columna]!=0){
+        let contenido=document.createTextNode(array_tablero[fila][columna]);
+        casilla.appendChild(contenido)
+    }
+}
 function generarMinas(minas){
     numMinas=0;
     while(numMinas<minas){

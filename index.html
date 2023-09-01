@@ -5,14 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        html{
+            box-sizing: border-box;
+        }
+        table{
+            background-color: #808080;
+            width: max-content;
+            margin: 0 
+        }
+        table,tr,td{
+            margin: 0;
+            padding: 0;
+        }
         button{
-            padding: 1rem;
+            width: 2rem;
+            height: 2rem;
+            margin: 0;
+        }
+        button.activo{
+            background-color: #C0C0C0;
+            border-top: solid#F7F7F7 5px;
+            border-left: solid#F7F7F7 5px;
+            border-bottom: solid #808080 5px;
+            border-right: solid#808080 5px;
+            cursor: pointer;
+        }
+        button.inactivo{
+            background-color: #C0C0C0;
+            border: 2px solid #808080 ;
         }
     </style>
     
 </head>
 <body>
-    <div id="tablero"></div>
+    <table id="tablero"></table>
 </body>
 <script src="scripts.js"></script>
 </html>
