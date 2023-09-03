@@ -2,8 +2,12 @@ let tamanyo_tablero=7;
 let array_tablero=[];
 let minas=4;
 
-function generarTablero(minas,tamanyo){
+function generarTablero(){
     const tablero = document.getElementById('tablero');
+    tablero.innerHTML="";
+    array_tablero=[];
+    let imagen_estado=document.getElementById("icono_estado");
+    imagen_estado.src="happy.png";
     for (let i = 0; i < tamanyo_tablero; i++) {
         let fila_nueva=[];
         const fila = document.createElement('tr');
@@ -96,6 +100,8 @@ function mostrarMinas(){
               
                 // Agrega la imagen como hijo del botón
                 casilla.appendChild(imagen);
+                let imagen_estado=document.getElementById("icono_estado");
+                imagen_estado.src="death.png";
             }else{
                 casilla.removeAttribute('onclick');
 

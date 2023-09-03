@@ -7,6 +7,29 @@
     <style>
         html{
             box-sizing: border-box;
+            background-color: #C0C0C0;
+        }
+        #contenedor{
+            padding: 0.7rem;
+            background-color: #C0C0C0;
+            border-top: solid#F7F7F7 5px;
+            border-left: solid#F7F7F7 5px;
+            border-bottom: solid #808080 5px;
+            border-right: solid#808080 5px;
+            width: max-content;
+            margin: 0 auto;
+            
+        }
+        #controles{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border-bottom: solid#F7F7F7 5px;
+            border-right: solid#F7F7F7 5px;
+            border-top: solid #808080 5px;
+            border-left: solid#808080 5px;
+            margin-bottom: 0.7rem;
+            padding: 0.5rem;
         }
         table{
             background-color: #808080;
@@ -24,7 +47,7 @@
             font-family: "Minesweeper", sans-serif;
             font-weight: bolder;
         }
-
+       
         .blue{
             color:blue;
         }
@@ -41,6 +64,10 @@
 
         img{
             max-width: 100%;
+        }
+        .boton-estado{
+            width: 3rem !important;
+            height: 3rem;
         }
         .mina-perder{
             background-color: red !important;
@@ -66,7 +93,24 @@
     
 </head>
 <body>
-    <table id="tablero"></table>
+    <div id="contenedor">
+        <div id="controles">
+            <div>
+                    10
+            </div>
+            <div>
+                <button class="activo boton-estado" onclick="generarTablero()">
+                    <img src="happy.png" id="icono_estado" alt="">
+
+                </button>
+            </div>
+            <div>
+                10
+            </div>
+        </div>
+        <table id="tablero"></table>
+    </div>
+    
 </body>
 <script src="scripts.js"></script>
 </html>
