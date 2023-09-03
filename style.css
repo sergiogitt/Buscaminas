@@ -1,0 +1,94 @@
+@font-face {
+    font-family: 'DS-Digital';
+    src: url('DS-DIGI.TTF') /* Formato moderno */
+    /* Puedes agregar más formatos de fuente si es necesario */
+  }
+html{
+    box-sizing: border-box;
+    background-color: #C0C0C0;
+}
+
+#contenedor{
+    padding: 0.7rem;
+    background-color: #C0C0C0;
+    border-top: solid#F7F7F7 5px;
+    border-left: solid#F7F7F7 5px;
+    border-bottom: solid #808080 5px;
+    border-right: solid#808080 5px;
+    width: max-content;
+    margin: 0 auto;
+    
+    
+}
+#controles{
+    font-family: "DS-Digital";
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: solid#F7F7F7 5px;
+    border-right: solid#F7F7F7 5px;
+    border-top: solid #808080 5px;
+    border-left: solid#808080 5px;
+    margin-bottom: 0.7rem;
+    padding: 0.5rem;
+    color: red;
+    background-color: black;
+}
+table{
+    background-color: #808080;
+    width: max-content;
+    margin: 0 
+}
+table,tr,td{
+    margin: 0;
+    padding: 0;
+}
+button{
+    width: 2rem;
+    height: 2rem;
+    margin: 0;
+    font-family: "Minesweeper", sans-serif;
+    font-weight: bolder;
+}
+
+.blue{
+    color:blue;
+}
+.red{
+    color:red;
+
+}
+.green{
+    color:green;
+}
+.cuatro{
+   color:#1C1C85; 
+}
+
+img{
+    max-width: 100%;
+}
+.boton-estado{
+    width: 3rem !important;
+    height: 3rem;
+}
+.mina-perder{
+    background-color: red !important;
+}
+.flexible-boton{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+button.activo{
+    background-color: #C0C0C0;
+    border-top: solid#F7F7F7 5px;
+    border-left: solid#F7F7F7 5px;
+    border-bottom: solid #808080 5px;
+    border-right: solid#808080 5px;
+    cursor: pointer;
+}
+button.inactivo{
+    background-color: #C0C0C0;
+    border: 2px solid #808080 ;
+}
