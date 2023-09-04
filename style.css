@@ -31,8 +31,12 @@ html{
     border-left: solid#808080 5px;
     margin-bottom: 0.7rem;
     padding: 0.5rem;
+    
+}
+.fondo-digital{
     color: red;
     background-color: black;
+    font-size: 3rem;
 }
 table{
     background-color: #808080;

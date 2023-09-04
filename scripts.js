@@ -1,10 +1,13 @@
 let tamanyo_tablero=7;
 let array_tablero=[];
 let minas=4;
-
+let jugando=false;
+let intervaloID;
 function generarTablero(){
     const tablero = document.getElementById('tablero');
     tablero.innerHTML="";
+    let reloj=document.getElementById("reloj");
+    reloj.innerHTML="000";
     array_tablero=[];
     let imagen_estado=document.getElementById("icono_estado");
     imagen_estado.src="happy.png";
@@ -33,6 +36,10 @@ function generarTablero(){
     console.log(array_tablero)
 }
 function abrirCasilla(fila,columna){
+    if(!jugando){
+        jugando=true;
+        intervaloID=setInterval(comenzarReloj,1000)
+    }
     let casilla=document.getElementById(`boton-${fila}-${columna}`);
     casilla.removeAttribute('onclick');
     casilla.classList.remove('activo');
@@ -45,6 +52,9 @@ function abrirCasilla(fila,columna){
     if (array_tablero[fila][columna] === "*") {
         contenido = document.createTextNode(""); // Cambia el contenido a un espacio en blanco
         mostrarMinas();
+        clearInterval(intervaloID)
+        jugando=false;
+        
     }
     switch(array_tablero[fila][columna]){
         case 1:
@@ -72,7 +82,6 @@ function abrirCasilla(fila,columna){
             break;
 
     }
-    console.log(contenido)
     casilla.appendChild(contenido);
 
     if(array_tablero[fila][columna]==0){
@@ -80,6 +89,13 @@ function abrirCasilla(fila,columna){
     }
     
 }
+function comenzarReloj() {
+    let reloj = document.getElementById("reloj");
+    let segundos = parseFloat(reloj.textContent);
+    segundos++;
+    let segundosFormateados = segundos.toString().padStart(3, "0");
+    reloj.innerHTML = segundosFormateados;
+  }
 function mostrarMinas(){
     for (let i=0;i<tamanyo_tablero;i++){
         
