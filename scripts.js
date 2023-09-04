@@ -3,6 +3,8 @@ let array_tablero=[];
 let minas=4;
 let jugando=false;
 let intervaloID;
+window.onload=generarTablero(5,5);
+
 function generarTablero(){
     const tablero = document.getElementById('tablero');
     tablero.innerHTML="";
@@ -37,6 +39,69 @@ function generarTablero(){
     controlClickDerecho();
     setContadorDeMinas(minas);
     console.log(array_tablero)
+}
+function comprobarGanador(){
+    let contadorCasillas=minas;
+    for (let i=0;i<tamanyo_tablero;i++){
+        
+        for (let j=0;j<tamanyo_tablero;j++){
+            let casilla=document.getElementById(`boton-${i}-${j}`);
+            if(casilla.classList.contains('inactivo')){
+                contadorCasillas++;
+            }
+        }
+    }
+    if(contadorCasillas==tamanyo_tablero*tamanyo_tablero){
+        console.log("ganas");
+        finalizarJuego();
+    }
+}
+function finalizarJuego(){
+    clearInterval(intervaloID);
+    for (let i=0;i<tamanyo_tablero;i++){
+        
+        for (let j=0;j<tamanyo_tablero;j++){
+            let casilla=document.getElementById(`boton-${i}-${j}`);
+            casilla.removeAttribute('onclick')
+        }
+    }
+    lanzarConfeti()
+
+}
+function lanzarConfeti(){
+    var count = 200;
+var defaults = {
+  origin: { y: 0.7 }
+};
+
+function fire(particleRatio, opts) {
+  confetti(Object.assign({}, defaults, opts, {
+    particleCount: Math.floor(count * particleRatio)
+  }));
+}
+
+fire(0.25, {
+  spread: 26,
+  startVelocity: 55,
+});
+fire(0.2, {
+  spread: 60,
+});
+fire(0.35, {
+  spread: 100,
+  decay: 0.91,
+  scalar: 0.8
+});
+fire(0.1, {
+  spread: 120,
+  startVelocity: 25,
+  decay: 0.92,
+  scalar: 1.2
+});
+fire(0.1, {
+  spread: 120,
+  startVelocity: 45,
+});
 }
 function setContadorDeMinas(numero){
     let selectorNumero=document.getElementById("numero_minas")
@@ -73,6 +138,8 @@ function abrirCasilla(fila,columna){
         clearInterval(intervaloID)
         jugando=false;
         
+    }else{
+        comprobarGanador()
     }
     switch(array_tablero[fila][columna]){
         case 1:
@@ -221,16 +288,7 @@ function contarMinasVecinas( fila,  columna) {
     }
     return numeroMinas;
 }
-window.onload=generarTablero(5,5);
-function controlClickDerecho(){
-    var casillasActivas = document.getElementsByClassName("activo");
-console.log(casillasActivas);
-// Iterar sobre cada elemento con la clase "activo" y agregar un evento
-for (var i = 0; i < casillasActivas.length; i++) {
-  var casillaTablero = casillasActivas[i];
-  let idCasilla=casillaTablero.getAttribute("id")
-  casillaTablero.addEventListener("contextmenu", function(event) {
-    // Tu código para manejar el evento click aquí
+function colocarBandera(event,idCasilla){
     event.preventDefault();
     
     let casilla=document.getElementById(idCasilla)
@@ -247,6 +305,17 @@ for (var i = 0; i < casillasActivas.length; i++) {
         setContadorDeMinas(numeroMinas)
     }
     console.log("pulsando derevho"+i);
-  });
 }
+function controlClickDerecho(){
+    var casillasActivas = document.getElementsByClassName("activo");
+console.log(casillasActivas);
+// Iterar sobre cada elemento con la clase "activo" y agregar un evento
+for (var i = 0; i < casillasActivas.length; i++) {
+    var casillaTablero = casillasActivas[i];
+    let idCasilla = casillaTablero.getAttribute("id");
+    casillaTablero.addEventListener("contextmenu", function(event) {
+      colocarBandera(event, idCasilla);
+    });
+  }
+  
 }
