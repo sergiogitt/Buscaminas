@@ -8,6 +8,8 @@ function generarTablero(){
     tablero.innerHTML="";
     let reloj=document.getElementById("reloj");
     reloj.innerHTML="000";
+    clearInterval(intervaloID)
+    jugando=false;
     array_tablero=[];
     let imagen_estado=document.getElementById("icono_estado");
     imagen_estado.src="happy.png";
@@ -32,7 +34,7 @@ function generarTablero(){
     }
     generarMinas(minas);
     generarNumeros();
-    
+    controlClickDerecho()
     console.log(array_tablero)
 }
 function abrirCasilla(fila,columna){
@@ -44,11 +46,19 @@ function abrirCasilla(fila,columna){
     casilla.removeAttribute('onclick');
     casilla.classList.remove('activo');
     casilla.classList="inactivo";
+    var imagen = casilla.querySelector('img');
+
+    // Verifica si existe una imagen dentro de la casilla
+    if (imagen) {
+      // Elimina la imagen
+      imagen.parentNode.removeChild(imagen);
+    }
     
     let contenido = document.createTextNode(array_tablero[fila][columna]);
     if (array_tablero[fila][columna] === 0) {
         contenido = document.createTextNode(" "); // Cambia el contenido a un espacio en blanco
     }
+    
     if (array_tablero[fila][columna] === "*") {
         contenido = document.createTextNode(""); // Cambia el contenido a un espacio en blanco
         mostrarMinas();
@@ -89,6 +99,7 @@ function abrirCasilla(fila,columna){
     }
     
 }
+
 function comenzarReloj() {
     let reloj = document.getElementById("reloj");
     let segundos = parseFloat(reloj.textContent);
@@ -109,6 +120,13 @@ function mostrarMinas(){
                 casilla.classList.remove('activo');
                 casilla.classList="inactivo";
                 casilla.classList.add("flexible-boton");
+                var imagenBandera = casilla.querySelector('img');
+
+                // Verifica si existe una imagen dentro de la casilla
+                if (imagenBandera) {
+                // Elimina la imagen
+                imagenBandera.parentNode.removeChild(imagenBandera);
+                }
                 const imagen = document.createElement("img");
     
                 // Establece el atributo src de la imagen con la ruta de la imagen
@@ -196,3 +214,27 @@ function contarMinasVecinas( fila,  columna) {
     return numeroMinas;
 }
 window.onload=generarTablero(5,5);
+function controlClickDerecho(){
+    var casillasActivas = document.getElementsByClassName("activo");
+console.log(casillasActivas);
+// Iterar sobre cada elemento con la clase "activo" y agregar un evento
+for (var i = 0; i < casillasActivas.length; i++) {
+  var casillaTablero = casillasActivas[i];
+  let idCasilla=casillaTablero.getAttribute("id")
+  console.log(idCasilla);
+  casillaTablero.addEventListener("contextmenu", function(event) {
+    // Tu código para manejar el evento click aquí
+    event.preventDefault();
+    
+    let casilla=document.getElementById(idCasilla)
+    if(casilla.innerHTML==""){
+        casilla.innerHTML='<img src="bandera.png" alt="Bandera">';
+
+    }else{
+        casilla.innerHTML='';
+
+    }
+    console.log("pulsando derevho"+i);
+  });
+}
+}
