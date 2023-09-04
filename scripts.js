@@ -34,8 +34,16 @@ function generarTablero(){
     }
     generarMinas(minas);
     generarNumeros();
-    controlClickDerecho()
+    controlClickDerecho();
+    setContadorDeMinas(minas);
     console.log(array_tablero)
+}
+function setContadorDeMinas(numero){
+    let selectorNumero=document.getElementById("numero_minas")
+    let minasFormateados = numero.toString().padStart(3, "0");
+    selectorNumero.innerHTML=minasFormateados;
+
+
 }
 function abrirCasilla(fila,columna){
     if(!jugando){
@@ -221,7 +229,6 @@ console.log(casillasActivas);
 for (var i = 0; i < casillasActivas.length; i++) {
   var casillaTablero = casillasActivas[i];
   let idCasilla=casillaTablero.getAttribute("id")
-  console.log(idCasilla);
   casillaTablero.addEventListener("contextmenu", function(event) {
     // Tu código para manejar el evento click aquí
     event.preventDefault();
@@ -229,10 +236,15 @@ for (var i = 0; i < casillasActivas.length; i++) {
     let casilla=document.getElementById(idCasilla)
     if(casilla.innerHTML==""){
         casilla.innerHTML='<img src="bandera.png" alt="Bandera">';
+        let numeroMinas=document.getElementById("numero_minas").textContent;
+        numeroMinas--,
+        setContadorDeMinas(numeroMinas)
 
     }else{
         casilla.innerHTML='';
-
+        let numeroMinas=document.getElementById("numero_minas").textContent;
+        numeroMinas++,
+        setContadorDeMinas(numeroMinas)
     }
     console.log("pulsando derevho"+i);
   });
