@@ -7,7 +7,18 @@ html{
     box-sizing: border-box;
     background-color: #C0C0C0;
 }
-
+#selector_nivel{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+#mas_nivel{
+    rotate: 180deg;
+}
+.seleccionar_nivel{
+    width: 2rem;
+    cursor: pointer;
+}
 #contenedor{
     padding: 0.7rem;
     background-color: #C0C0C0;

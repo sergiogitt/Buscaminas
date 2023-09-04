@@ -8,6 +8,17 @@
     <link rel="icon" href="mina.png" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script></head>
 <body>
+    <div id="selector_nivel">
+        <div class="seleccionar_nivel" onclick="cambiarNivel('-')">
+            <img src="flecha.png" alt="Menos" id="menos_nivel"/>
+        </div>
+        <div id="nombre_nivel">
+            Facil
+        </div>
+        <div class="seleccionar_nivel" onclick="cambiarNivel('+')">
+            <img src="flecha.png" alt="Más" id="mas_nivel"/>
+        </div>
+    </div>
     <div id="contenedor">
         <div id="controles">
             <div class="fondo-digital" id="numero_minas">

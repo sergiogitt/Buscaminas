@@ -3,7 +3,9 @@ let array_tablero=[];
 let minas=4;
 let jugando=false;
 let intervaloID;
-window.onload=generarTablero(5,5);
+let niveles=["Fácil","Intermedio","Dificil"];
+let nivel_actual=0;
+window.onload=generarTablero();
 
 function generarTablero(){
     const tablero = document.getElementById('tablero');
@@ -39,6 +41,39 @@ function generarTablero(){
     controlClickDerecho();
     setContadorDeMinas(minas);
     console.log(array_tablero)
+}
+function cambiarNivel(nivel){
+    if(nivel=="+"){
+        if(nivel_actual+1==niveles.length){
+            nivel_actual=0;
+        }else{
+            nivel_actual++;
+        }
+
+    }else{
+        if(nivel_actual-1<0){
+            nivel_actual=niveles.length-1;
+        }else{
+            nivel_actual--;
+        }
+    }
+    let nombre_nivel=document.getElementById("nombre_nivel");
+    nombre_nivel.innerHTML=niveles[nivel_actual];
+    switch(nivel_actual){
+        case 0:
+            tamanyo_tablero=7;
+            minas=4;
+            break;
+        case 1:
+            tamanyo_tablero=10;
+            minas=12;
+            break;
+        case 2:
+            tamanyo_tablero=16;
+            minas=35;
+            break;
+    }
+    generarTablero()
 }
 function comprobarGanador(){
     let contadorCasillas=minas;
