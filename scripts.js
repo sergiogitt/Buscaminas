@@ -42,6 +42,7 @@ function generarTablero(){
 }
 function comprobarGanador(){
     let contadorCasillas=minas;
+    console.log("compronbndo")
     for (let i=0;i<tamanyo_tablero;i++){
         
         for (let j=0;j<tamanyo_tablero;j++){
