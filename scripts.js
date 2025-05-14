@@ -328,6 +328,9 @@ function colocarBandera(event,idCasilla){
     event.preventDefault();
     
     let casilla=document.getElementById(idCasilla)
+    if(casilla.classList.contains("inactivo")) {
+        return;
+    }
     if(casilla.innerHTML==""){
         casilla.innerHTML='<img src="bandera.png" alt="Bandera">';
         let numeroMinas=document.getElementById("numero_minas").textContent;
